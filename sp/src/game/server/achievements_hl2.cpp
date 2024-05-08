@@ -53,4 +53,5 @@ class CAchievementHL2FindAllLambdas : public CBaseAchievement
 
 DECLARE_MAP_EVENT_ACHIEVEMENT(ACHIEVEMENT_greensoupmod_FIRST_PLAY, "greensoupmod_FIRST_PLAY", 5);
 DECLARE_MAP_EVENT_ACHIEVEMENT(ACHIEVEMENT_greensoupmod_EXPLORER, "greensoupmod_EXPLORER", 5);
+//DECLARE_MAP_EVENT_ACHIEVEMENT(ACHIEVEMENT_greensoupmod_EXPLORER, "greensoupmod_EXPLORER", 5);
 #endif // GAME_DLL

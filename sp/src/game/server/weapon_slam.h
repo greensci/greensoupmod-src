@@ -1,3 +1,4 @@
+#pragma once
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		SLAM 
@@ -84,7 +85,7 @@ public:
 #endif
 
 private:
-	CWeapon_SLAM(const CWeapon_SLAM*);
+	CWeapon_SLAM(const CWeapon_SLAM&);
 };
 
 

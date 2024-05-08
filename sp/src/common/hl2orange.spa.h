@@ -15,9 +15,9 @@
 extern "C" {
 #endif
 
-//
-// Title info
-//
+	//
+	// Title info
+	//
 
 #define TITLEID_THE_ORANGE_BOX                      0x4541080F
 
@@ -179,7 +179,8 @@ extern "C" {
 // XUSER_ACHIEVEMENT structure that is used with
 // XUserWriteAchievements and XUserCreateAchievementEnumerator.
 //
-
+#define ACHIEVEMENT_greensoupmod_EXPLORER           41
+#define ACHIEVEMENT_greensoupmod_FIRST_PLAY         42
 #define ACHIEVEMENT_HLX_KILL_ENEMIES_WITHPHYSICS    43
 #define ACHIEVEMENT_HLX_KILL_ENEMY_WITHHOPPERMINE   44
 #define ACHIEVEMENT_HLX_KILL_ENEMIES_WITHMANHACK    45

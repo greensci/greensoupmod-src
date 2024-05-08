@@ -17,12 +17,13 @@
 
 class CWeaponStunStick : public CBaseHLBludgeonWeapon
 {
-	DECLARE_CLASS( CWeaponStunStick, CBaseHLBludgeonWeapon );
+	DECLARE_CLASS(CWeaponStunStick, CBaseHLBludgeonWeapon);
 	DECLARE_DATADESC();
 
 public:
 
 	CWeaponStunStick();
+	~CWeaponStunStick();
 
 	DECLARE_SERVERCLASS();
 	DECLARE_ACTTABLE();
@@ -31,28 +32,32 @@ public:
 
 	void		Spawn();
 
-	float		GetRange( void )		{ return STUNSTICK_RANGE; }
-	float		GetFireRate( void )		{ return STUNSTICK_REFIRE; }
+	float		GetRange(void) { return STUNSTICK_RANGE; }
+	float		GetFireRate(void) { return STUNSTICK_REFIRE; }
 
-	int			WeaponMeleeAttack1Condition( float flDot, float flDist );
+	int			WeaponMeleeAttack1Condition(float flDot, float flDist);
 
-	bool		Deploy( void );
-	bool		Holster( CBaseCombatWeapon *pSwitchingTo = NULL );
-	
-	void		Drop( const Vector &vecVelocity );
-	void		ImpactEffect( trace_t &traceHit );
-	void		SecondaryAttack( void )	{}
-	void		SetStunState( bool state );
-	bool		GetStunState( void );
-	void		Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator );
-	
-	float		GetDamageForActivity( Activity hitActivity );
+	bool		Deploy(void);
+	bool		Holster(CBaseCombatWeapon* pSwitchingTo = NULL);
+	void		ItemPostFrame(void);
 
-	bool		CanBePickedUpByNPCs( void ) { return false;	}		
+	void		Equip(CBaseCombatCharacter* pOwner);
+	void		Drop(const Vector& vecVelocity);
+	void		PrimaryAttack(void);
+	void		SecondaryAttack(void) {}
+	void		SetStunState(bool state);
+	bool		GetStunState(void);
+	void		Operator_HandleAnimEvent(animevent_t* pEvent, CBaseCombatCharacter* pOperator);
+
+	float		GetDamageForActivity(Activity hitActivity);
+
+	bool		CanBePickedUpByNPCs(void) { return false; }
+	void		AddViewKick(void);
 
 private:
 
-	CNetworkVar( bool, m_bActive );
+	CNetworkVar(bool, m_bActive);
+	CNetworkVar(bool, m_bInSwing);
 };
 
 #endif // WEAPON_STUNSTICK_H

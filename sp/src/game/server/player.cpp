@@ -6189,7 +6189,8 @@ void CBasePlayer::CheatImpulseCommands(int iImpulse)
 		GiveAmmo(255, "grenade");
 		GiveAmmo(255, "357");
 		GiveAmmo(255, "XBowBolt");
-		GiveAmmo( 255,   "SLAM");
+		GiveAmmo( 5,   "SLAM");
+		GiveAmmo(5, "Molotov");
 #ifdef HL2_EPISODIC
 		GiveAmmo(255, "Hopwire");
 

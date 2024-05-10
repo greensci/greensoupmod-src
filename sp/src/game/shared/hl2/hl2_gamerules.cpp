@@ -140,9 +140,9 @@ ConVar	sk_max_sniper_round("sk_max_sniper_round", "0", FCVAR_REPLICATED);
 ConVar	sk_max_slam("sk_max_slam", "0", FCVAR_REPLICATED);
 //ConVar	sk_max_tripwire			( "sk_max_tripwire","0", FCVAR_REPLICATED);
 
-//ConVar	sk_plr_dmg_molotov		( "sk_plr_dmg_molotov","0", FCVAR_REPLICATED);
-//ConVar	sk_npc_dmg_molotov		( "sk_npc_dmg_molotov","0", FCVAR_REPLICATED);
-//ConVar	sk_max_molotov			( "sk_max_molotov","0", FCVAR_REPLICATED);
+ConVar	sk_plr_dmg_molotov		( "sk_plr_dmg_molotov","0", FCVAR_REPLICATED);
+ConVar	sk_npc_dmg_molotov		( "sk_npc_dmg_molotov","0", FCVAR_REPLICATED);
+ConVar	sk_max_molotov			( "sk_max_molotov","0", FCVAR_REPLICATED);
 
 ConVar	sk_plr_dmg_grenade("sk_plr_dmg_grenade", "0", FCVAR_REPLICATED);
 ConVar	sk_npc_dmg_grenade("sk_npc_dmg_grenade", "0", FCVAR_REPLICATED);
@@ -1880,6 +1880,7 @@ CAmmoDef* GetAmmoDef()
 		def.AddAmmoType("HelicopterGun", DMG_BULLET, TRACER_LINE_AND_WHIZ, "sk_npc_dmg_helicopter_to_plr", "sk_npc_dmg_helicopter", "sk_max_smg1", BULLET_IMPULSE(400, 1225), AMMO_FORCE_DROP_IF_CARRIED | AMMO_INTERPRET_PLRDAMAGE_AS_DAMAGE_TO_PLAYER);
 		def.AddAmmoType("AR2AltFire", DMG_DISSOLVE, TRACER_NONE, 0, 0, "sk_max_ar2_altfire", 0, 0);
 		def.AddAmmoType("Grenade", DMG_BURN, TRACER_NONE, "sk_plr_dmg_grenade", "sk_npc_dmg_grenade", "sk_max_grenade", 0, 0);
+		def.AddAmmoType("Molotov", DMG_BURN, TRACER_NONE, "sk_plr_dmg_molotov", "sk_npc_dmg_molotov", "sk_max_molotov", 0, 0);
 #ifdef HL2_EPISODIC
 		def.AddAmmoType("Hopwire", DMG_BLAST, TRACER_NONE, "sk_plr_dmg_grenade", "sk_npc_dmg_grenade", "sk_max_hopwire", 0, 0);
 		def.AddAmmoType("CombineHeavyCannon", DMG_BULLET, TRACER_LINE, 40, 40, NULL, 10 * 750 * 12, AMMO_FORCE_DROP_IF_CARRIED); // hit like a 10 kg weight at 750 ft/s

@@ -3958,6 +3958,7 @@ void CHL2_Player::Splash(void)
 	float flSpeed = GetAbsVelocity().Length();
 	if (flSpeed < 300)
 	{
+	
 		data.m_flScale = random->RandomFloat(10, 12);
 		DispatchEffect("waterripple", data);
 	}

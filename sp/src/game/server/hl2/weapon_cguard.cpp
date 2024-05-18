@@ -185,7 +185,7 @@ void CreateConcussiveBlast( const Vector &origin, const Vector &surfaceNormal, C
 
 // Combine Guard weapon
 
-#if 0
+#if 1
 
 class CWeaponCGuard : public CBaseHLCombatWeapon
 {
@@ -283,7 +283,7 @@ void CWeaponCGuard::AlertTargets( void )
 
 	// Fire the bullets
 	Vector vecSrc	 = pPlayer->Weapon_ShootPosition( );
-	Vector vecAiming = pPlayer->GetRadialAutoVector( NEW_AUTOAIM_RADIUS, NEW_AUTOAIM_DIST );
+	Vector vecAiming = pPlayer->GetAutoaimVector( AUTOAIM_2DEGREES);
 
 	Vector	impactPoint	= vecSrc + ( vecAiming * MAX_TRACE_LENGTH );
 
@@ -372,7 +372,7 @@ void CWeaponCGuard::PrimaryAttack( void )
 
 	WeaponSound( SPECIAL1 );
 
-	//UTIL_ScreenShake( GetAbsOrigin(), 10.0f, 100.0f, 2.0f, 128, SHAKE_START, false );
+	UTIL_ScreenShake( GetAbsOrigin(), 10.0f, 100.0f, 2.0f, 128, SHAKE_START, false );
 
 	m_flChargeTime	= gpGlobals->curtime + 1.0f;
 	m_bFired		= false;
@@ -383,7 +383,7 @@ void CWeaponCGuard::PrimaryAttack( void )
 //-----------------------------------------------------------------------------
 void CWeaponCGuard::ItemPostFrame( void )
 {
-	//FIXME: UpdateLasers();
+	UpdateLasers();
 
 	if ( ( m_flChargeTime < gpGlobals->curtime ) && ( m_bFired == false ) )
 	{
@@ -437,7 +437,7 @@ void CWeaponCGuard::DelayedFire( void )
 
 	// Fire the bullets
 	Vector vecSrc	 = pPlayer->Weapon_ShootPosition( );
-	Vector vecAiming = pPlayer->GetRadialAutoVector( NEW_AUTOAIM_RADIUS, NEW_AUTOAIM_DIST );
+	Vector vecAiming = pPlayer->GetAutoaimVector( AUTOAIM_2DEGREES );
 
 	//Factor in the view kick
 	AddViewKick();

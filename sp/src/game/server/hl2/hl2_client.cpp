@@ -126,20 +126,20 @@ void ClientGamePrecache( void )
 // called by ClientKill and DeadThink
 void respawn( CBaseEntity *pEdict, bool fCopyCorpse )
 {
-	if (gpGlobals->coop || gpGlobals->deathmatch)
-	{
-		if ( fCopyCorpse )
-		{
-			// make a copy of the dead body for appearances sake
-			((CHL2_Player *)pEdict)->CreateCorpse();
-		}
+	CBasePlayer* pPlayer = ToBasePlayer(pEdict);
 
-		// respawn player
-		pEdict->Spawn();
-	}
-	else
-	{       // restart the entire server
-		engine->ServerCommand("reload\n");
+	if (pPlayer)
+	{
+		if (gpGlobals->curtime > pPlayer->GetDeathTime() + DEATH_ANIMATION_TIME)
+		{
+			// respawn player
+			pPlayer->Spawn();
+			engine->ServerCommand("firstperson\n");
+		}
+		else
+		{
+			pPlayer->SetNextThink(gpGlobals->curtime + 0.1f);
+		}
 	}
 }
 

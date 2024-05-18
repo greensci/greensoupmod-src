@@ -28,7 +28,9 @@ STUB_WEAPON_CLASS(weapon_ar2, WeaponAR2, C_HLMachineGun);
 STUB_WEAPON_CLASS(weapon_frag, WeaponFrag, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS(weapon_rpg, WeaponRPG, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS(weapon_pistol, WeaponPistol, C_BaseHLCombatWeapon);
-STUB_WEAPON_CLASS(weapon_emmulatool, Emmulatool, C_BaseHLCombatWeapon);
+STUB_WEAPON_CLASS(weapon_kautooler, KauTooler, C_BaseHLCombatWeapon);
+STUB_WEAPON_CLASS(weapon_testinggun, TestingGun, C_BaseHLCombatWeapon);
+STUB_WEAPON_CLASS(weapon_cguard, WeaponCGuard, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS( weapon_mp5, WeaponMP5, C_HLSelectFireMachineGun);
 STUB_WEAPON_CLASS(weapon_shotgun, WeaponShotgun, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS( weapon_toolgun, WeaponToolgun, C_HLSelectFireMachineGun);
@@ -40,6 +42,7 @@ STUB_WEAPON_CLASS(weapon_crossbow, WeaponCrossbow, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS(weapon_slam, Weapon_SLAM, C_BaseHLCombatWeapon);
 STUB_WEAPON_CLASS(weapon_crowbar, WeaponCrowbar, C_BaseHLBludgeonWeapon);
 STUB_WEAPON_CLASS(weapon_molotov, WeaponMolotov, C_BaseHLCombatWeapon);
+STUB_WEAPON_CLASS(weapon_toolcamera, ToolCamera, C_BaseHLCombatWeapon);
 //STUB_WEAPON_CLASS(weapon_stunstick, WeaponStunStick, C_BaseHLBludgeonWeapon);
 #ifdef HL2_EPISODIC
 STUB_WEAPON_CLASS(weapon_hopwire, WeaponHopwire, C_BaseHLCombatWeapon);

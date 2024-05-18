@@ -26,14 +26,14 @@
 #include "tier0/memdbgon.h"
 
 
-class CEmmulatool : public CBaseHLCombatWeapon
+class CKauTooler : public CBaseHLCombatWeapon
 {
 	int tool = 0;
 	DECLARE_DATADESC();
 public:
-	DECLARE_CLASS(CEmmulatool, CBaseHLCombatWeapon);
+	DECLARE_CLASS(CKauTooler, CBaseHLCombatWeapon);
 
-	CEmmulatool(void);
+	CKauTooler(void);
 
 	DECLARE_SERVERCLASS();
 
@@ -51,14 +51,14 @@ public:
 	void    toolminus(void);
 };
 
-IMPLEMENT_SERVERCLASS_ST(CEmmulatool, DT_Emmulatool)
+IMPLEMENT_SERVERCLASS_ST(CKauTooler, DT_KauTooler)
 
 END_SEND_TABLE()
 
-LINK_ENTITY_TO_CLASS(weapon_Emmulatool, CEmmulatool);
-PRECACHE_WEAPON_REGISTER(weapon_Emmulatool);
+LINK_ENTITY_TO_CLASS(weapon_KauTooler, CKauTooler);
+PRECACHE_WEAPON_REGISTER(weapon_KauTooler);
 
-BEGIN_DATADESC(CEmmulatool)
+BEGIN_DATADESC(CKauTooler)
 
 
 
@@ -66,7 +66,7 @@ END_DATADESC()
 
 
 
-CEmmulatool::CEmmulatool(void)
+CKauTooler::CKauTooler(void)
 {
 
 }
@@ -75,7 +75,7 @@ CEmmulatool::CEmmulatool(void)
 // Precache
 //-----------------------------------------------------
 
-void CEmmulatool::Precache(void)
+void CKauTooler::Precache(void)
 {
 	BaseClass::Precache();
 	//p recache models , sound , and other things
@@ -86,7 +86,7 @@ void CEmmulatool::Precache(void)
 // what are you reading this ?
 //-----------------------------------------------------
 
-void CEmmulatool::Fire(void)
+void CKauTooler::Fire(void)
 {
 
 
@@ -126,10 +126,11 @@ void CEmmulatool::Fire(void)
 	pBeam->SetColor(0, 255, 0);
 	pBeam->RelinkBeam();
 	pBeam->LiveForTime(0.3);
-
+	g_pEffects->Sparks(tr.endpos);
+	WeaponSound(SPECIAL1);
 
 }
-void CEmmulatool::firesecond(void) {
+void CKauTooler::firesecond(void) {
 
 	CBasePlayer* pOwner = ToBasePlayer(GetOwner());
 	Vector vecSrc;
@@ -157,6 +158,11 @@ void CEmmulatool::firesecond(void) {
 
 		vecMaster = vecSrc;
 	}
+	CPASAttenuationFilter filter(GetOwner());
+	filter.MakeReliable();
+
+	
+	
 	trace_t    tr;
 	UTIL_TraceLine(vecSrc, vecSrc + vecAiming * MAX_TRACE_LENGTH, MASK_SHOT, pOwner, COLLISION_GROUP_NONE, &tr);
 
@@ -165,52 +171,60 @@ void CEmmulatool::firesecond(void) {
 
 		if (tr.DidHitWorld()) // if the end result is world
 		{
-			CBeam* pBdelete = CBeam::BeamCreate("sprites/grav_beam.vmt", 1.5);
-			pBdelete->PointEntInit(vecMaster, this);
-			pBdelete->SetAbsStartPos(tr.endpos);
-			pBdelete->SetEndAttachment(1);
-			pBdelete->SetBrightness(255);
-			pBdelete->SetColor(255, 0, 0);
-			pBdelete->RelinkBeam();
-			pBdelete->LiveForTime(0.1);
-
-			g_pEffects->Sparks(tr.endpos);
-			WeaponSound(SPECIAL1);
-		}
-
-		else // if the end result is not the world  
-		{
-			CBeam* pBeam = CBeam::BeamCreate("sprites/physbeam.vmt", 1.5);
+			CBeam* pBeam = CBeam::BeamCreate("sprites/lgtning.vmt", 2.0);
 			pBeam->PointEntInit(vecMaster, this);
 			pBeam->SetAbsStartPos(tr.endpos);
 			pBeam->SetEndAttachment(1);
 			pBeam->SetBrightness(255);
 			pBeam->SetColor(255, 0, 0);
 			pBeam->RelinkBeam();
-			pBeam->LiveForTime(0.1);
+			pBeam->LiveForTime(0.3);
+
+			g_pEffects->Sparks(tr.endpos);
+			WeaponSound(SPECIAL1);
+			//EmitSound(filter, GetOwner()->entindex(), "Weapon_AR1.NPC_Double");
+		}
+
+		else // if the end result is not the world  
+		{
+			CBeam* pBeam = CBeam::BeamCreate("sprites/lgtning.vmt", 2.0);
+			pBeam->PointEntInit(vecMaster, this);
+			pBeam->SetAbsStartPos(tr.endpos);
+			pBeam->SetEndAttachment(1);
+			pBeam->SetBrightness(255);
+			pBeam->SetColor(255, 0, 0);
+			pBeam->RelinkBeam();
+			pBeam->LiveForTime(0.3);
 
 			UTIL_RemoveImmediate(tr.m_pEnt);
 			g_pEffects->Sparks(tr.endpos);
-			WeaponSound(SPECIAL1);
+			Vector forward;
+			AngleVectors(tr.m_pEnt->GetAbsAngles(), &forward);
+			g_pEffects->MetalSparks(tr.endpos, forward);
+			g_pEffects->Dust(tr.endpos, forward, 4, 10);
+			g_pEffects->Ricochet(tr.endpos, forward);
+			
+			EmitSound(filter, GetOwner()->entindex(), "Weapon_AR1.NPC_Reload");
+			UTIL_ScreenShake(GetAbsOrigin(), 3.0f, 100.0f, 1.0f, 128, SHAKE_START, false);
 		}
-
+		
 	}
 	// with this you can fire beam 
-
+	
 }
 
 
 
-void CEmmulatool::toolplus(void)
+void CKauTooler::toolplus(void)
 {
-	UTIL_CenterPrintAll("Glue Blob Modyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n");
+	UTIL_CenterPrintAll("delete\n");
 
 	UTIL_ClientPrintAll(HUD_PRINTTALK, "Message text");
 	UTIL_ClientPrintAll(HUD_PRINTCONSOLE, "Message text");
 
 
 }
-void CEmmulatool::toolminus(void)
+void CKauTooler::toolminus(void)
 {
 	UTIL_CenterPrintAll("Delete Mode\n");
 	UTIL_ClientPrintAll(HUD_PRINTTALK, "delete");
@@ -229,7 +243,7 @@ void CEmmulatool::toolminus(void)
 // ItemPostFrame
 //-----------------------------------------------------
 
-void CEmmulatool::ItemPostFrame(void)
+void CKauTooler::ItemPostFrame(void)
 {
 	CBasePlayer* pOwner = ToBasePlayer(GetOwner());
 

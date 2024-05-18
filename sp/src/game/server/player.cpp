@@ -2070,6 +2070,13 @@ void CBasePlayer::ShowViewPortPanel(const char* name, bool bShow, KeyValues* dat
 
 void CBasePlayer::PlayerDeathThink(void)
 {
+	
+	
+	engine->ServerCommand("thirdperson\n");
+	
+		// make a copy of the dead body for appearances sake
+	//CreateCorpse();
+	
 	float flForward;
 
 	SetNextThink(gpGlobals->curtime + 0.1f);
@@ -5065,7 +5072,7 @@ void CBasePlayer::Spawn(void)
 	GiveNamedItem("weapon_bugbait");
 	GiveNamedItem("weapon_rpg");
 	GiveNamedItem("weapon_crossbow");
-	
+	GiveNamedItem("weapon_kautooler");
 
 
 }
@@ -6181,7 +6188,7 @@ void CBasePlayer::CheatImpulseCommands(int iImpulse)
 		GiveAmmo(255, "AR2AltFire");
 		GiveAmmo(255, "SMG1");
 		GiveAmmo(255, "AR1");
-		
+		GiveAmmo(5, "SLAM");
 
 		GiveAmmo(255, "Buckshot");
 		GiveAmmo(255, "smg1_grenade");
@@ -6189,8 +6196,7 @@ void CBasePlayer::CheatImpulseCommands(int iImpulse)
 		GiveAmmo(255, "grenade");
 		GiveAmmo(255, "357");
 		GiveAmmo(255, "XBowBolt");
-		GiveAmmo( 5,   "SLAM");
-		GiveAmmo(5, "Molotov");
+		//GiveAmmo( 255,   "SLAM");
 #ifdef HL2_EPISODIC
 		GiveAmmo(255, "Hopwire");
 
@@ -6212,7 +6218,7 @@ void CBasePlayer::CheatImpulseCommands(int iImpulse)
 		//GiveNamedItem("weapon_ar1");
 		//GiveNamedItem("weapon_stunstick");
 		//GiveNamedItem("weapon_slam");
-		GiveNamedItem("weapon_emmulatool");
+		GiveNamedItem("weapon_kautooler");
 		GiveNamedItem("weapon_physgun");
 
 

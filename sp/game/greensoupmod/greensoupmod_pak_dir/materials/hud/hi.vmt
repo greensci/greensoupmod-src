@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/hi.vtf"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

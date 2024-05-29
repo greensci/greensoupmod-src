@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/weapons/v_cremator/w_crematorgun"
+        "$envmap" "env_cubemap"
+        //"$selfillum" "1"
+	
+	"$envmapsaturation" .5
+	"$surfaceprop" "metal"
+        "$bumpmap"     "models/weapons/v_cremator/w_crematorgun_normal"
+	"$normalmapalphaenvmapmask" 1
+}

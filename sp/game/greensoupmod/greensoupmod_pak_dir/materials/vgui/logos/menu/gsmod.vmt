@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/logos/menu/gsmod"
+	"$nolod" 1
+	"$translucent" 1
+}

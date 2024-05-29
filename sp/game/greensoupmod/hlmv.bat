@@ -1,0 +1,1 @@
+start "" "D:\SteamLibrary\steamapps\common\Source SDK Base 2013 Singleplayer/bin/hlmv.exe" -game "D:\Half-Life 2 3in1\hl2"%*

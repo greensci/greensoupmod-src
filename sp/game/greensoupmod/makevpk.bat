@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Steam\steamapps\common\Half-Life 2\bin\vpk.exe" "C:\Users\green\OneDrive\Documentos\greensoupmod-src\sp\game\greensoupmod\greensoupmod_pak_dir"

@@ -1,0 +1,1 @@
+start "" "D:\SteamLibrary\steamapps\common\Half-Life 2\bin\hammerplusplus.exe" -game "C:\Program Files (x86)\Steam\steamapps\sourcemods\greensoupmod"%*

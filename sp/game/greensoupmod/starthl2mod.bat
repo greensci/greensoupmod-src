@@ -1,0 +1,1 @@
+start "" "C:\Program Files (x86)\Steam\steamapps\common\Half-Life 2\hl2.exe" -game "C:\Program Files (x86)\Steam\steamapps\sourcemods\greensoupmod"%* -console

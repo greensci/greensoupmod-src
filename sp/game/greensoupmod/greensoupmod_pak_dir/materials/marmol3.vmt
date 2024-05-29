@@ -1,0 +1,13 @@
+"LightmappedGeneric"
+{
+
+	"$basetexture" "marmol3"
+	"$surfaceprop" "tile"
+	"%keywords" "c17skyscraper"
+	
+	"$envmap" "env_cubemap"
+	"$envmapcontrast" 1
+	"$envmapsaturation" 1
+        "$bumpmap" "marmol3_normal"
+        "$normalmapalphaenvmapmask" 1
+}

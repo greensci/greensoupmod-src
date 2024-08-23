@@ -1,8 +1,8 @@
 versioninfo
 {
 	"editorversion" "400"
-	"editorbuild" "8864"
-	"mapversion" "51"
+	"editorbuild" "8868"
+	"mapversion" "52"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -64,7 +64,24 @@ light_plus
 	"soften_cosine" "0"
 	"debug" "0"
 	"cubemap" "1"
-	"hdr" "0"
+}
+postprocess_plus
+{
+	"enable" "1"
+	"copied_from_controller" "1"
+	"bloom_scale" "1"
+	"bloom_exponent" "2.5"
+	"bloom_saturation" "1"
+	"auto_exposure_min" "0.5"
+	"auto_exposure_max" "2"
+	"tonemap_percent_target" "60"
+	"tonemap_percent_bright_pixels" "2"
+	"tonemap_min_avg_luminance" "3"
+	"tonemap_rate" "1"
+	"vignette_enable" "0"
+	"vignette_start" "1"
+	"vignette_end" "2"
+	"vignette_blur" "0"
 }
 bgimages_plus
 {
@@ -72,7 +89,7 @@ bgimages_plus
 world
 {
 	"id" "1"
-	"mapversion" "51"
+	"mapversion" "52"
 	"classname" "worldspawn"
 	"coldworld" "1"
 	"detailmaterial" "detail/detailsprites"
@@ -4786,16 +4803,18 @@ entity
 }
 entity
 {
-	"id" "1541"
+	"id" "1947"
 	"classname" "light_environment"
-	"_ambient" "80 80 80 259"
-	"_ambientHDR" "221 221 221 1"
+	"_ambient" "255 255 255 20"
+	"_ambientHDR" "-1 -1 -1 1"
 	"_AmbientScaleHDR" "1"
-	"_light" "218 225 231 560"
-	"_lightHDR" "235 235 235 1"
+	"_light" "255 255 255 200"
+	"_lightHDR" "-1 -1 -1 1"
 	"_lightscaleHDR" "1"
-	"angles" "220 132 0"
-	"origin" "-448 448 1856"
+	"angles" "0 149 0"
+	"pitch" "-130"
+	"SunSpreadAngle" "0"
+	"origin" "-480 480 0"
 	editor
 	{
 		"color" "220 30 220"

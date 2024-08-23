@@ -78,7 +78,7 @@ static ConVar sv_weapon_drop_enabled("sv_weapon_drop_enabled", "1");
 
 extern int gEvilImpulse101;
 
-ConVar sv_autojump("sv_autojump", "0");
+
 
 ConVar hl2_walkspeed("hl2_walkspeed", "400");
 ConVar hl2_normspeed("hl2_normspeed", "2500");
@@ -608,7 +608,8 @@ void CHL2_Player::PreThink(void)
 		return;
 	}
 
-	// This is an experiment of mine- autojumping! 
+	
+	/*// This is an experiment of mine- autojumping! 
 	// only affects you if sv_autojump is nonzero.
 	if ((GetFlags() & FL_ONGROUND) && sv_autojump.GetFloat() != 0)
 	{
@@ -649,7 +650,7 @@ void CHL2_Player::PreThink(void)
 				}
 			}
 		}
-	}
+	}*/
 
 	VPROF_SCOPE_BEGIN("CHL2_Player::PreThink-Speed");
 	HandleSpeedChanges();

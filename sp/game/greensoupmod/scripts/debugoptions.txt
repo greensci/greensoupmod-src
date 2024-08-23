@@ -1190,11 +1190,11 @@ DebugMenu
 		{
 			"command"	"ent_create prop_physics_override model models/weapons/w_crossbow.mdl"
 		}
-		"Smg1"
+		"SMG1"
 		{
 			"command"	"ent_create prop_physics_override model models/weapons/w_smg1.mdl"
 		}
-		"Ar2"
+		"AR2"
 		{
 			"command"	"ent_create prop_physics_override model models/weapons/w_irifle.mdl"
 		}
@@ -1974,6 +1974,11 @@ DebugMenu
 		{
 			"command"	"give weapon_ar1"
 		}
+"Immolator"
+		{
+			"command"	"give weapon_immolator"
+		}
+
 		"Pulse Rifle"
 		{
 			"command"	"give weapon_ar2"
@@ -2105,7 +2110,10 @@ DebugMenu
 		{
 			"command"	"ent_create weapon_ar1"
 		}
-
+"Immolator"
+		{
+			"command"	"ent_create weapon_immolator"
+		}
 		"Shotgun"
 		{
 			"command"	"ent_create weapon_shotgun"
@@ -2236,7 +2244,7 @@ DebugMenu
 		}
 		"Crate"
 		{
-			"command"	"ent_create item_item_crate ItemClass npc_manhack ItemCount 10"
+			"command"	"ent_create item_item_crate ItemClass item_battery ItemCount 1"
 		}
 		"Ammo Crate(Pistol)"
 		{

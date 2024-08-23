@@ -48,7 +48,7 @@ LINK_ENTITY_TO_CLASS( npc_magnusson, CNPC_Magnusson );
 //-----------------------------------------------------------------------------
 Class_T	CNPC_Magnusson::Classify ( void )
 {
-	return	CLASS_PLAYER_ALLY_VITAL;
+	return	CLASS_NONE;
 }
 
 
@@ -100,7 +100,7 @@ void CNPC_Magnusson::Spawn()
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_RED );
-	m_iHealth			= 8;
+	m_iHealth			= 100;
 	m_flFieldOfView		= 0.5;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
 	m_NPCState			= NPC_STATE_NONE;
 	

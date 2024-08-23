@@ -173,5 +173,6 @@ void InstallGameRules()
 		// generic half-life
 		CreateGameRulesObject( "CHalfLife2" );
 	}
+	engine->ServerCommand("firstperson\n");
 }
 

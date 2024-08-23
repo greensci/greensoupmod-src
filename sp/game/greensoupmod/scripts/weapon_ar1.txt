@@ -8,7 +8,7 @@ WeaponData
 	"playermodel"				"models/weapons/w_ar1.mdl"
     "anim_prefix"           "ar1"
     "bucket"                "2"
-    "bucket_position"       "3"
+    "bucket_position"       "2"
     "bucket_360"            "1"
     "bucket_position_360"   "0"
 

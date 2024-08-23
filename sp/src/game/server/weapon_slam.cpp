@@ -287,6 +287,7 @@ void CWeapon_SLAM::StartSatchelDetonate()
 	}
 	else
 	{
+		
 		return;
 	}
 	SatchelDetonate();
@@ -308,7 +309,7 @@ void CWeapon_SLAM::TripmineAttach(void)
 	{
 		return;
 	}
-
+	//tu puta madre
 	m_bAttachTripmine = false;
 
 	Vector vecSrc, vecAiming;
@@ -339,7 +340,7 @@ void CWeapon_SLAM::TripmineAttach(void)
 			CBaseEntity* pEnt = CBaseEntity::Create("npc_tripmine", tr.endpos + tr.plane.normal * 3, angles, NULL);
 
 			CTripmineGrenade* pMine = (CTripmineGrenade*)pEnt;
-			pMine->AttackToEntity(pEntity);
+			//pMine->AttachToEntity(pEntity);
 			pMine->m_hOwner = GetOwner();
 
 #endif

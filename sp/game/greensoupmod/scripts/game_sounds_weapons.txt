@@ -1779,5 +1779,21 @@
 
 	"wave"			"weapons/cguard/charging.wav"
 }
+//immolator
+"Weapon_Immolator.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"wave"			"weapons/immolator/plasma_shoot.wav"
+}
+
+"Weapon_Immolator.Reload"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"		"SNDLVL_GUNFIRE"
+	"wave"			"weapons/immolator/plasma_reload.wav"
+}
 
 

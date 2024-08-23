@@ -1,1 +1,1 @@
-start "" "C:\Program Files (x86)\Steam\steamapps\common\Source SDK Base 2013 Singleplayer\hl2.exe" -game "C:\Users\green\OneDrive\Documentos\greensoupmod-src\sp\game\greensoupmod"%* -console 
+start "" "C:\Program Files (x86)\Steam\steamapps\common\Source SDK Base 2013 Singleplayer\hl2.exe" -game "C:\greensoupmod-src\sp\game\greensoupmod"%* -console 

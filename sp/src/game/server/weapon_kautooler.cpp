@@ -161,8 +161,8 @@ void CKauTooler::firesecond(void) {
 	CPASAttenuationFilter filter(GetOwner());
 	filter.MakeReliable();
 
-	
-	
+
+
 	trace_t    tr;
 	UTIL_TraceLine(vecSrc, vecSrc + vecAiming * MAX_TRACE_LENGTH, MASK_SHOT, pOwner, COLLISION_GROUP_NONE, &tr);
 
@@ -203,14 +203,14 @@ void CKauTooler::firesecond(void) {
 			g_pEffects->MetalSparks(tr.endpos, forward);
 			g_pEffects->Dust(tr.endpos, forward, 4, 10);
 			g_pEffects->Ricochet(tr.endpos, forward);
-			
+
 			EmitSound(filter, GetOwner()->entindex(), "Weapon_AR1.NPC_Reload");
 			UTIL_ScreenShake(GetAbsOrigin(), 3.0f, 100.0f, 1.0f, 128, SHAKE_START, false);
 		}
-		
+
 	}
 	// with this you can fire beam 
-	
+
 }
 
 

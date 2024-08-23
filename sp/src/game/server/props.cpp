@@ -2749,7 +2749,13 @@ void CPhysicsProp::OnPhysGunPickup( CBasePlayer *pPhysGunUser, PhysGunPickup_t r
 
 	if( reason == PICKED_UP_BY_CANNON )
 	{
+		if (m_bFirstCollisionAfterLaunch) {
+			PhysClearGameFlags(pPhysicsObject, FVPHYSICS_WAS_THROWN);
+			m_bFirstCollisionAfterLaunch = false;
+		}
 		m_OnPhysGunOnlyPickup.FireOutput( pPhysGunUser, this );
+
+		
 	}
 
 	if ( reason == PUNTED_BY_CANNON )

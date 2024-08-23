@@ -92,7 +92,8 @@ typedef CUtlVector< CBaseEntity* > EntityList_t;
 // For CLASSIFY
 enum Class_T
 {
-	CLASS_NONE=0,				
+	CLASS_NONE=0,
+	CLASS_KILLABLE,
 	CLASS_PLAYER,			
 	CLASS_PLAYER_ALLY,
 	CLASS_PLAYER_ALLY_VITAL,

@@ -23,6 +23,7 @@ ipch
 *.vpc_crc
 *.sln
 *.sentinel
+*.vpk
 
 # Visual Studio build results
 *[Dd]ebug*/
@@ -85,3 +86,4 @@ compile_commands.json
 # Don't ignore base makefiles
 !makefile_base_posix.mak
 !sourcesdk_def.mak
+

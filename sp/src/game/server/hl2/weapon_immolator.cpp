@@ -105,6 +105,7 @@ void CWeaponImmolator::StartImmolating()
 {
 	isActive = true;
 	SendWeaponAnim(ACT_VM_PRIMARYATTACK);
+
 	// Start the radius really tiny because we use radius == 0.0 to 
 	// determine whether the immolator is operating or not.
 	m_flBurnRadius = 0.1;
@@ -244,17 +245,18 @@ void CWeaponImmolator::Update()
 
 	if( pOwner )
 	{
-		CBaseCombatCharacter* pOwner = GetOwner();
-		vecSrc = pOwner->Weapon_ShootPosition();
-		vecAiming = m_vecImmolatorTarget - vecSrc;
-		VectorNormalize(vecAiming);
-	}
-	else
-	{
 		vecSrc = pOwner->Weapon_ShootPosition();
 		pOwner->GetVectors(&forward, &right, &up);
 		vecSrc += (forward * 8.0f) + (right * 3.0f) + (up * -2.0f);
 		vecAiming = pOwner->GetAutoaimVector(AUTOAIM_2DEGREES);
+	
+	}
+	else
+	{
+		CBaseCombatCharacter* pOwner = GetOwner();
+		vecSrc = pOwner->Weapon_ShootPosition();
+		vecAiming = m_vecImmolatorTarget - vecSrc;
+		VectorNormalize(vecAiming);
 	}
 
 	trace_t	tr;
@@ -346,7 +348,7 @@ void CWeaponImmolator::Update()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose: idk
 //-----------------------------------------------------------------------------
 void CWeaponImmolator::ItemPostFrame( void )
 {
@@ -365,7 +367,8 @@ void CWeaponImmolator::ItemPostFrame( void )
 		return BaseClass::ItemPostFrame();
 	}
 
-	if ((pPlayer->m_nButtons & IN_ATTACK) && m_flNextPrimaryAttack < gpGlobals->curtime) {
+	if ((pPlayer->m_nButtons & IN_ATTACK) && m_flNextPrimaryAttack < gpGlobals->curtime) 
+	{
 		if (m_flNextAttackTime < gpGlobals->curtime) {
 			pPlayer->RemoveAmmo(1, m_iPrimaryAmmoType);
 			m_flNextAttackTime = gpGlobals->curtime + 0.25f;

@@ -16,6 +16,17 @@
 #include "ai_basenpc.h"
 #include "ai_memory.h"
 
+
+#include "gamerules.h"
+#include "in_buttons.h"
+#include "props.h"
+
+#include "game.h"
+#include "vstdlib/random.h"
+#include "gamestats.h"
+#include "beam_shared.h"
+#include "IEffects.h" 
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -242,7 +253,8 @@ void CWeaponImmolator::Update()
 	Vector vecSrc;
 	Vector vecAiming, forward, right, up;
 	QAngle angle;
-
+	Vector vecMaster;
+	QAngle dummy;
 	if( pOwner )
 	{
 		vecSrc = pOwner->Weapon_ShootPosition();
@@ -254,6 +266,8 @@ void CWeaponImmolator::Update()
 	else
 	{
 		CBaseCombatCharacter* pOwner = GetOwner();
+		
+		
 		vecSrc = pOwner->Weapon_ShootPosition();
 		vecAiming = m_vecImmolatorTarget - vecSrc;
 		VectorNormalize(vecAiming);
@@ -264,7 +278,43 @@ void CWeaponImmolator::Update()
 
 	int brightness;
 	brightness = 255 * (m_flBurnRadius/MAX_BURN_RADIUS);
-	UTIL_Beam(  vecSrc,
+	// physgun 
+	CBeam* pBeam = CBeam::BeamCreate("sprites/lgtning.vmt", 2.9f);
+	pBeam->PointEntInit(vecMaster, this);
+	pBeam->SetAbsStartPos(tr.endpos);
+	pBeam->SetEndAttachment(1);
+	//pBeam->SetBrightness(210);
+	pBeam->SetColor(0, 114, 0);
+	pBeam->SetNoise(0.4f);
+	pBeam->RelinkBeam();
+	pBeam->LiveForTime(0.1);
+
+	pBeam = CBeam::BeamCreate("sprites/lgtning.vmt", 1);
+
+	pBeam->PointEntInit(vecMaster, this);
+	pBeam->SetAbsStartPos(tr.endpos);
+	pBeam->SetEndAttachment(1);
+	//pBeam->SetBrightness(211);
+	pBeam->SetColor(0, 114, 0);
+	pBeam->SetNoise(1.6f);
+	pBeam->RelinkBeam();
+	pBeam->LiveForTime(0.2);
+
+	CBasePlayer* pPlayer = ToBasePlayer(GetOwner());
+
+	if (pPlayer == NULL)
+		return;
+
+	QAngle punchAng;
+
+	punchAng.x = random->RandomFloat(0.1f, -0.4f);
+	punchAng.y = random->RandomFloat(-0.4f, 0.1f);
+	punchAng.z = 0.0f;
+
+	pPlayer->ViewPunch(punchAng);
+
+
+	/*UTIL_Beam(vecSrc,
 				tr.endpos,
 				m_beamIndex,
 				0,		//halo index
@@ -283,7 +333,7 @@ void CWeaponImmolator::Update()
 				brightness, // bright
 				100  // speed
 				);
-
+	*/
 
 	if( tr.DidHitWorld() )
 	{
@@ -332,6 +382,7 @@ void CWeaponImmolator::Update()
 	{
 		// The attack beam struck some kind of entity directly.
 		if (m_flBurnRadius > 16.0 && (tr.endpos - tr.startpos).Length() <= m_fMaxRange1) {
+			ImmolationDamage(CTakeDamageInfo(this, this, 1, DMG_BURN), tr.endpos, m_flBurnRadius, CLASS_NONE);
 			ClearMultiDamage();
 			CTakeDamageInfo dmgInfo(this, this, 2, DMG_BURN);
 			tr.m_pEnt->DispatchTraceAttack(dmgInfo, forward, &tr);

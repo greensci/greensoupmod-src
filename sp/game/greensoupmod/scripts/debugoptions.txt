@@ -1948,6 +1948,11 @@ DebugMenu
 		{
 			"command"	"give weapon_kautooler"
 		}
+"Camera Tool"
+		{
+			"command"	"give weapon_toolcamera"
+		}
+
 		
 		"Crowbar"
 		{

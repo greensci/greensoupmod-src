@@ -24,16 +24,16 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-ConVar phys_gunmass("phys_gunmass", "2000");
-ConVar phys_gunvel("phys_gunvel", "4000");
-ConVar phys_gunforce("phys_gunforce", "4e66");
+ConVar phys_gunmass("phys_gunmass", "1000");
+ConVar phys_gunvel("phys_gunvel", "3000");
+ConVar phys_gunforce("phys_gunforce", "4e6");
 ConVar phys_guntorque("phys_guntorque", "1000");
 ConVar phys_gunglueradius("phys_gunglueradius", "1280");
 
 static int g_physgunBeam;
 #define PHYSGUN_BEAM_SPRITE		"sprites/physbeamg.vmt"
 
-#define MAX_PELLETS	50
+#define MAX_PELLETS	99
 
 class CWeaponGravityGun;
 
@@ -82,11 +82,13 @@ public:
 		constraint_fixedparams_t fixed;
 		fixed.Defaults();
 		fixed.InitWithCurrentObjectState(pReference, pAttached);
-
+		
 		m_pConstraint = physenv->CreateFixedConstraint(pReference, pAttached, NULL, fixed);
 		m_pConstraint->SetGameData((void*)this);
 
 		MakeInert();
+		
+	    UTIL_CenterPrintAll("attached");
 		return true;
 	}
 
@@ -235,6 +237,7 @@ void CGravControllerPoint::AttachEntity(CBaseEntity* pEntity, IPhysicsObject* pP
 	m_targetRotation = pEntity->GetAbsAngles();
 	float torque = phys_guntorque.GetFloat();
 	m_maxAngularAcceleration = torque * pPhys->GetInvInertia();
+
 }
 
 void CGravControllerPoint::DetachEntity(void)

@@ -342,7 +342,7 @@ void CWeapon_SLAM::TripmineAttach(void)
 			CTripmineGrenade* pMine = (CTripmineGrenade*)pEnt;
 			//pMine->AttachToEntity(pEntity);
 			pMine->m_hOwner = GetOwner();
-
+			//pMine->SetDamage(pOwner->get_damage(AOA_SLAM));
 #endif
 
 			pOwner->RemoveAmmo(1, m_iSecondaryAmmoType);

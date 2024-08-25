@@ -130,7 +130,7 @@ void CNewNPC::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CNewNPC::Precache( void )
 {
-	PrecacheModel( "models/mymodel.mdl" );
+	PrecacheModel( "models/kleiner.mdl" );
 
 	BaseClass::Precache();
 }
@@ -145,7 +145,7 @@ void CNewNPC::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/mymodel.mdl" );
+	SetModel( "models/kleiner.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 

@@ -24,10 +24,10 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-ConVar phys_gunmass("phys_gunmass", "1000");
-ConVar phys_gunvel("phys_gunvel", "3000");
+ConVar phys_gunmass("phys_gunmass", "4000");
+ConVar phys_gunvel("phys_gunvel", "4000");
 ConVar phys_gunforce("phys_gunforce", "4e6");
-ConVar phys_guntorque("phys_guntorque", "1000");
+ConVar phys_guntorque("phys_guntorque", "1");
 ConVar phys_gunglueradius("phys_gunglueradius", "1280");
 
 static int g_physgunBeam;
@@ -223,11 +223,12 @@ CGravControllerPoint::~CGravControllerPoint(void)
 
 void CGravControllerPoint::AttachEntity(CBaseEntity* pEntity, IPhysicsObject* pPhys, const Vector& position)
 {
+
 	m_attachedEntity = pEntity;
 	pPhys->WorldToLocal(&m_localPosition, position);
 	m_worldPosition = position;
 	pPhys->GetDamping(NULL, &m_saveDamping);
-	float damping = 2;
+	float damping = 1;
 	pPhys->SetDamping(NULL, &damping);
 	m_controller = physenv->CreateMotionController(this);
 	m_controller->AttachObject(pPhys, true);
@@ -296,6 +297,7 @@ IMotionEvent::simresult_e CGravControllerPoint::Simulate(IPhysicsMotionControlle
 	pObject->LocalToWorld(&world, m_localPosition);
 	m_worldPosition = world;
 	pObject->GetVelocity(&vel, &angVel);
+	
 	//pObject->GetVelocityAtPoint( world, &vel );
 	float damping = 1.0;
 	world += vel * deltaTime * damping;
@@ -740,7 +742,7 @@ void CWeaponGravityGun::EffectUpdate(void)
 	{
 		if (m_useDown) // if already been pressed 
 		{
-			if (pOwner->m_afButtonPressed & IN_USE) // then if use pressed
+			if (pOwner->m_afButtonPressed & IN_ATTACK2) // then if use pressed
 			{
 				m_useDown = false;
 				IPhysicsObject* pPhys = pObject->VPhysicsGetObject();
@@ -753,11 +755,12 @@ void CWeaponGravityGun::EffectUpdate(void)
 		}
 		else
 		{
-			if (pOwner->m_afButtonPressed & IN_USE)
+			if (pOwner->m_afButtonPressed & IN_ATTACK2)
 			{
 				m_useDown = true;
 				IPhysicsObject* pPhys = pObject->VPhysicsGetObject();
 				pPhys->EnableMotion(false);
+				WeaponSound(SINGLE);
 			}
 		}
 
@@ -1212,16 +1215,18 @@ void CWeaponGravityGun::DetachObject(void)
 
 void CWeaponGravityGun::AttachObject(CBaseEntity* pObject, const Vector& start, const Vector& end, float distance)
 {
+	
 	m_hObject = pObject;
 	IPhysicsObject* pPhysics = pObject ? (pObject->VPhysicsGetObject()) : NULL;
 	if (pPhysics && pObject->GetMoveType() == MOVETYPE_VPHYSICS)
 	{
 		m_distance = distance;
-
+		
 		m_gravCallback.AttachEntity(pObject, pPhysics, end);
 		float mass = pPhysics->GetMass();
 		Msg("Object mass: %.2f lbs (%.2f kg)\n", kg2lbs(mass), mass);
 		float vel = phys_gunvel.GetFloat();
+		//float massDiv = mass / 4;
 		if (mass > phys_gunmass.GetFloat())
 		{
 			vel = (vel * phys_gunmass.GetFloat()) / mass;
@@ -1372,7 +1377,7 @@ void CWeaponGravityGun::ItemPostFrame(void)
 	if (!pOwner)
 		return;
 
-	if (pOwner->m_afButtonPressed & IN_ATTACK2)
+	if (pOwner->m_afButtonPressed & IN_RELOAD)
 	{
 		SecondaryAttack();
 	}
